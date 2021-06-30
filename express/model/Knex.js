@@ -1,66 +1,188 @@
-const db = require('../db/db')
-
-
-async function add(obj,table) {
-    const data = await db(table).returning('*').insert(obj)
-    return data
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var db = require('../db/db');
+function add(obj, table) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db(table).returning('*').insert(obj)];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function query(tableName,condition,option) {
-    const data = await db(tableName).where(condition, option)
-    return data
+function query(tableName, condition, option) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db(tableName).where(condition, option)];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function select(tableName) {
-    const data = await db.select().table(tableName)
-    return data
+function select(tableName) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db.select().table(tableName)];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function join(user_id) {
-    const data = await db('favorites')
-  .join('parks', 'favorites.park_id', '=', 'parks.id')
-  .where('favorites.user_id', user_id)
-  .select('*')
-  return data
+function join(user_id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db('favorites')
+                        .join('parks', 'favorites.park_id', '=', 'parks.id')
+                        .where('favorites.user_id', user_id)
+                        .select('*')];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function update(tableName,userId,obj) {
-    const data = await db(tableName)
-    .where({ id: userId })
-    .update(obj)
-    .returning('*')
-    return data
+function update(tableName, userId, obj) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db(tableName)
+                        .where({ id: userId })
+                        .update(obj)
+                        .returning('*')];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function updateTo(obj,table,column,location) {
-    const data = await db(table).update(obj).where(column, location).returning('*')
-    return data
+function updateTo(obj, table, column, location) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db(table).update(obj).where(column, location).returning('*')];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-
-async function deleteFav(obj) {
-    const data = await db("favorites").where('park_id' , obj.park_id).del()
-    return data
+function deleteFav(obj) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db("favorites").where('park_id', obj.park_id).del()];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function deleteEvent(Id) {
-    const data = await db("events").where('id' , Id).returning('*').del()
-    return data
+function deleteEvent(Id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db("events").where('id', Id).returning('*').del()];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function deleteBigEvents() {
-    const data = await db("park_events").del()
-    return data
+function deleteBigEvents() {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db("park_events").del()];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-async function filterJoin(tableName) {
-    const data = await db(tableName)
-    .join('parks', `${tableName}.park_name`, '=', `parks.park_name`)
-    .select('*')
-    return data
+function filterJoin(tableName) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, db(tableName)
+                        .join('parks', tableName + ".park_name", '=', "parks.park_name")
+                        .select('*')];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+            }
+        });
+    });
 }
-
-
 module.exports = {
-    add,
-    query,
-    select,
-    join,
-    update,
-    updateTo,
-    deleteFav,
-    filterJoin,
-    deleteEvent,
-    deleteBigEvents
-}
+    add: add,
+    query: query,
+    select: select,
+    join: join,
+    update: update,
+    updateTo: updateTo,
+    deleteFav: deleteFav,
+    filterJoin: filterJoin,
+    deleteEvent: deleteEvent,
+    deleteBigEvents: deleteBigEvents
+};

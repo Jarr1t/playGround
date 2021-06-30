@@ -84,7 +84,6 @@ function LoginPage() {
                 </Link>
                 </span>
             </Card>  
-
        </div>
     </div>
    )
