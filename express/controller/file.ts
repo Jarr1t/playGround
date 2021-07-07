@@ -5,7 +5,19 @@ const keys = require('../auth/auth')
 const fetch = require('node-fetch');
 const bcrypt = require('bcrypt');
 
-const imageUpload = (req: {files: {imageUpload: { data: string}}, headers: {user: string}}, res: express.Response) => {
+
+interface Request {
+  files: {
+    imageUpload: {
+      data: string
+    }
+  },
+  headers: {
+    user: string
+  }
+}
+
+const imageUpload = (req: Request, res: express.Response) => {
     if(req.files) {
         const {imageUpload} = req.files
         const user = JSON.parse(req.headers.user)
@@ -29,7 +41,7 @@ const imageUpload = (req: {files: {imageUpload: { data: string}}, headers: {user
     }
   }
 
-const parkevents = async (req: void, res: express.Response) => {
+const parkevents = async (req: express.Request, res: express.Response) => {
   db.deleteBigEvents()
   await fetch('https://www.nycgovparks.org/xml/events_300_rss.json')
   .then((response: any) => response.json())

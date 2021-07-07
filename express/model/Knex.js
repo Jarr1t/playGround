@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var db = require('../db/db');
-function add(obj, table) {
+function add(DatabaseObject, table) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, db(table).returning('*').insert(obj)];
+                case 0: return [4 /*yield*/, db(table).returning('*').insert(DatabaseObject)];
                 case 1:
                     data = _a.sent();
                     return [2 /*return*/, data];
@@ -91,14 +91,14 @@ function join(user_id) {
         });
     });
 }
-function update(tableName, userId, obj) {
+function update(tableName, userId, DatabaseObject) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, db(tableName)
                         .where({ id: userId })
-                        .update(obj)
+                        .update(DatabaseObject)
                         .returning('*')];
                 case 1:
                     data = _a.sent();
@@ -107,12 +107,12 @@ function update(tableName, userId, obj) {
         });
     });
 }
-function updateTo(obj, table, column, location) {
+function updateTo(DatabaseObject, table, column, location) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, db(table).update(obj).where(column, location).returning('*')];
+                case 0: return [4 /*yield*/, db(table).update(DatabaseObject).where(column, location).returning('*')];
                 case 1:
                     data = _a.sent();
                     return [2 /*return*/, data];

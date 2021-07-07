@@ -1,7 +1,11 @@
 const db = require('../db/db')
 
 
-async function add(obj:{}, table: string) {
+interface DatabaseObject {
+    [key: string]: any
+    }
+
+async function add(obj: DatabaseObject, table: string) {
     const data = await db(table).returning('*').insert(obj)
     return data
 }
@@ -20,14 +24,14 @@ async function join(user_id: number) {
   .select('*')
   return data
 }
-async function update(tableName: string, userId: number, obj:{}) {
+async function update(tableName: string, userId: number, obj: DatabaseObject) {
     const data = await db(tableName)
     .where({ id: userId })
     .update(obj)
     .returning('*')
     return data
 }
-async function updateTo(obj:{}, table: string, column: string, location: string) {
+async function updateTo(obj: DatabaseObject, table: string, column: string, location: string) {
     const data = await db(table).update(obj).where(column, location).returning('*')
     return data
 }

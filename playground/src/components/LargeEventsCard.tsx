@@ -1,6 +1,17 @@
 import Card from 'react-bootstrap/Card'
 
-function LargeEventsCard(props:{ event:{title: string, startdate: string, location: string, starttime:string, endtime:string, image: string}}){
+interface eventInfo {
+    event: {
+        title: string, 
+        startdate: string, 
+        location: string, 
+        starttime:string, 
+        endtime:string, 
+        image: string
+    }
+}
+
+function LargeEventsCard(props: eventInfo){
     const title = props.event.title
     const startdate = props.event.startdate
     const location = props.event.location

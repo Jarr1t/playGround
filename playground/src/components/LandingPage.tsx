@@ -1,17 +1,23 @@
 import {Link} from 'react-router-dom';
 
+interface eventInterface {
+    target: {
+        className: string
+    }
+}
+
 function LandingPage() {
-    
-    function addActive( e: {target: {className: string}}) {
+
+    function addActive( event: eventInterface) {
         const showcase = document.querySelector('.showcase')
         if(showcase!.className  === 'showcase active') {
             showcase!.className = 'showcase';
         } else {
             showcase!.className = 'showcase active';
         }
-        return (e.target.className === 'toggle active')? 
-            e.target.className = 'toggle'
-          : e.target.className = 'toggle active'
+        return (event.target.className === 'toggle active')? 
+            event.target.className = 'toggle'
+          : event.target.className = 'toggle active'
     }
 
     return (
@@ -19,7 +25,7 @@ function LandingPage() {
             <section className="showcase">
             <div id="nav">
                     <h2 className="logo">PlayGround</h2>
-                    <div className="toggle" onClick={(event: React.MouseEvent<HTMLElement>) => {addActive}}></div>
+                    <div className="toggle" onClick={(event: React.MouseEvent) => {addActive}}></div>
             </div>
                 <video src="/assets/scene2.mp4" loop autoPlay muted></video>
                 <div className="overlay"></div>
